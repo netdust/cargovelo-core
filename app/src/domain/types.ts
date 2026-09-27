@@ -48,7 +48,7 @@ export interface TimeWindow {
 export interface ShipmentEvent {
   id: number;
   shipment_id: number;
-  type: 'status' | 'note' | 'pod' | 'exception' | 'price' | 'assignment';
+  type: 'status' | 'note' | 'pod' | 'exception' | 'price' | 'assignment' | 'edit';
   from_status: ShipmentStatus | null;
   to_status: ShipmentStatus | null;
   actor_id: number | null;
@@ -63,6 +63,7 @@ export interface Shipment {
   reference: string;
   customer_id: number | null;
   customer_name: string;
+  contact_email: string;
   service: ServiceCode;
   hub: string;
   status: ShipmentStatus;

@@ -202,6 +202,16 @@ function wp_login_url(string $redirect = ''): string
     return 'https://cargovelo.test/login';
 }
 
+function rest_url(string $path = ''): string
+{
+    return 'https://cargovelo.test/wp-json/' . ltrim($path, '/');
+}
+
+function wp_create_nonce(string $action = ''): string
+{
+    return 'nonce-' . $action;
+}
+
 function plugins_url(string $path, string $file): string
 {
     return 'https://cargovelo.test/app/mu-plugins/cargovelo-core/' . ltrim($path, '/');

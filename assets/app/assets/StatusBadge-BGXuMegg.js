@@ -1,0 +1,1 @@
+import{W as e,at as t,k as n,rt as r}from"./app-DEOCip5E.js";var i=e();function a({status:e,solid:a=!1}){return(0,i.jsx)(n,{variant:t[e],emphasis:a?`solid`:`subtle`,children:r[e]})}function o({status:e}){return(0,i.jsx)(`span`,{className:`cv-dot`,style:{background:`var(--cv-status-${e})`},"aria-hidden":`true`})}export{o as n,a as t};

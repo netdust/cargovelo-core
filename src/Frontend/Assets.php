@@ -63,6 +63,9 @@ final class Assets
         return [
             'mode' => 'wp',
             'restNamespace' => 'cargovelo/v1',
+            // Only for <img>/download URLs (proof-of-delivery images, CSV export); wp.apiFetch carries its own nonce.
+            'restRoot' => rest_url('cargovelo/v1/'),
+            'nonce' => wp_create_nonce('wp_rest'),
             'context' => $context,
             'loginUrl' => wp_login_url(),
             'trackingPage' => (string) (function_exists('ntdst_get') ? (ntdst_get(SettingsService::class)->all()['tracking_page'] ?? '') : ''),

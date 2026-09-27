@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: './',
   build: {
-    outDir: '../cargovelo-core/assets/app',
+    outDir: '../assets/app',
     emptyOutDir: true,
     manifest: true,
     rollupOptions: {
