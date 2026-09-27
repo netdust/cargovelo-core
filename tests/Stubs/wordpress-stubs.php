@@ -278,7 +278,7 @@ function add_shortcode(string $tag, callable $cb): void
 
 function wp_enqueue_script(string $handle, string $src = '', array $deps = [], mixed $ver = false, bool $footer = false): void
 {
-    $GLOBALS['cv_test']['scripts'][$handle] = ['src' => $src, 'deps' => $deps];
+    $GLOBALS['cv_test']['scripts'][$handle] = ['src' => $src, 'deps' => $deps, 'ver' => $ver];
 }
 
 function wp_register_script(string $handle, string $src = '', array $deps = [], mixed $ver = false, bool $footer = false): void

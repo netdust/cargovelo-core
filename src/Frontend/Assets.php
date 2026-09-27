@@ -32,7 +32,8 @@ final class Assets
             foreach ($entry['css'] ?? [] as $i => $css) {
                 wp_enqueue_style(self::HANDLE . ($i ? "-{$i}" : ''), $base . $css, [], CARGOVELO_VERSION);
             }
-            wp_enqueue_script(self::HANDLE, $base . $entry['file'], ['wp-api-fetch'], CARGOVELO_VERSION, true);
+            // No ?ver: the file name is hashed, and chunks import the entry by its bare URL (one module, one React).
+            wp_enqueue_script(self::HANDLE, $base . $entry['file'], ['wp-api-fetch'], null, true);
         } elseif (defined('WP_DEBUG') && WP_DEBUG) {
             wp_enqueue_script(self::HANDLE, self::DEV_SERVER . '/' . self::ENTRY, ['wp-api-fetch'], null, true);
             wp_enqueue_script(self::HANDLE . '-vite-client', self::DEV_SERVER . '/@vite/client', [], null, false);

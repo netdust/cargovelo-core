@@ -40,6 +40,8 @@ final class AssetsAndShortcodesTest extends TestCase
         self::assertArrayHasKey('cargovelo-app', $scripts);
         self::assertContains('wp-api-fetch', $scripts['cargovelo-app']['deps']);
         self::assertStringContainsString('assets/app/assets/app-', $scripts['cargovelo-app']['src']);
+        // Lazy chunks import the entry by its bare URL; a ?ver= would load a second copy of React.
+        self::assertNull($scripts['cargovelo-app']['ver']);
         $config = json_decode(substr($GLOBALS['cv_test']['inline']['cargovelo-app'], strlen('window.cargoveloConfig = '), -1), true);
         self::assertSame('wp', $config['mode']);
         self::assertSame('https://cargovelo.test/wp-json/cargovelo/v1/', $config['restRoot']);
