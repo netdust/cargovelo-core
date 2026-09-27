@@ -1,0 +1,40 @@
+{
+  "name": "netdust/cargovelo-core",
+  "description": "Cargo Velo shipments system: booking, dispatch, courier proof of delivery, customer portal. NTDST Core mu-plugin.",
+  "type": "wordpress-muplugin",
+  "license": "proprietary",
+  "authors": [
+    { "name": "netdust", "email": "stefan@netdust.be" }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "composer/installers": "^2.2"
+  },
+  "require-dev": {
+    "dg/bypass-finals": "^1.8",
+    "phpunit/phpunit": "^11.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "CargoVelo\\": "src/"
+    },
+    "files": [
+      "src/Support/functions.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "CargoVelo\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "lint": "find src -name '*.php' -print0 | xargs -0 -n1 php -l"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    },
+    "sort-packages": true
+  }
+}
