@@ -48,11 +48,12 @@ add_action('init', static function (): void {
 }, 1);
 
 // DI bindings (interfaces + repositories) before any service is resolved.
-add_action('ntdst/core_ready', static function () use ($cargoveloConfig): void {
+$cargoveloBind = static function () use ($cargoveloConfig): void {
     foreach ($cargoveloConfig['bindings'] as $abstract => $concrete) {
         ntdst_set($abstract, $concrete);
     }
-});
+};
+add_action('ntdst/core_ready', $cargoveloBind);
 
 // Boot services and handlers once, in array order (INV-19: THE instance).
 $cargoveloBoot = static function () use ($cargoveloConfig): void {
@@ -77,7 +78,10 @@ add_action('ntdst/features_ready', $cargoveloBoot);
 
 // The NTDST lifecycle is driven by an NTDST theme. On a site whose theme does not boot NTDST_Bootstrap
 // the hooks never fire; boot from init instead so the REST API and admin still work.
-add_action('init', static function () use ($cargoveloBoot): void {
+add_action('init', static function () use ($cargoveloBind, $cargoveloBoot): void {
+    if (!did_action('ntdst/core_ready') && function_exists('ntdst_set')) {
+        $cargoveloBind();
+    }
     if (!did_action('ntdst/features_ready')) {
         $cargoveloBoot();
     }
